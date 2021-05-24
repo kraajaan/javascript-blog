@@ -1,7 +1,8 @@
 'use strict';
 
-let counter = 0;
-
-caunter = counter + 1;
-
-console.log(counter); // 0
+/*
+document.getElementById('test-button').addEventListener('click', function(){
+  const links = document.querySelectorAll('.titles a');
+  console.log('links:', links);
+});
+*/
