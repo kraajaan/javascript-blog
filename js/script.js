@@ -53,7 +53,7 @@
 
       const ulSelector = document.querySelector('aside ul.titles');
       function clearLinks(){
-      	ulSelector.innerHTML = '';
+        ulSelector.innerHTML = '';
       }
 
       clearLinks();
@@ -63,7 +63,7 @@
       // [PYT?] let ulInnerHTML = ulSelector.innerHTML;
       //console.log('ulInnerHTML: ', ulInnerHTML);
 
-      let addList = '';
+      //let addList = '';
       for(let article of articles){
 
         /* read an article id and write it to const */
