@@ -1,6 +1,20 @@
 {
   'use strict';
 
+  const optArticleSelector = '.post',
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list',
+    optArticleAuthorSelector = 'article p.post-author',
+    optTagsListSelector = '.tags.list';
+
+
+
+
+
+
+
+
 
 
   const titleClickHandler = function(event){
@@ -39,16 +53,6 @@
     /* add class 'active' to the correct article */
     correctArticle.classList.add('active');
   }
-
-
-
-
-  const optArticleSelector = '.post',
-    optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles',
-    optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = 'article p.post-author';
-
 
 
 
@@ -104,6 +108,9 @@
 
 
   function generateTags(){
+    /* [NEW] create a new variable allTags with an empty array */
+    let allTags = [];
+
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -133,6 +140,12 @@
         /* add generated code to html variable */
         html = html + genHTML;
 
+        /* [NEW] check if this link is NOT already in allTags */
+        if(allTags.indexOf(genHTML) == -1){
+          /* [NEW] add generated code to allTags array */
+          allTags.push(genHTML);
+        }
+
       /* END LOOP: for each tag */
       }
 
@@ -141,6 +154,13 @@
 
     /* END LOOP: for every article: */
     }
+
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector('.tags');
+
+    /* [NEW] add html from allTags to tagList */
+    tagList.innerHTML = allTags.join(' ');
+
   }
 
   generateTags();
@@ -274,6 +294,8 @@
   }
 
   addClickListenersToAuthors();
+
+
 
 
 
