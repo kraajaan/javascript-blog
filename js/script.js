@@ -1,6 +1,18 @@
 {
   'use strict';
 
+
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagBottomLink: Handlebars.compile(document.querySelector('#template-tag-bottom-link').innerHTML),
+    authorTopLink: Handlebars.compile(document.querySelector('#template-author-top-link').innerHTML),
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
+
+  }
+
+
+
+
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
@@ -89,8 +101,10 @@
       //console.log('articleTitle: ', articleTitle);
 
       /* generate HTML code and write to const */
-      const addLink = '<li><a href="#'+articleId+'"><span>'+articleTitle+'</span></a></li>';
+      //const addLink = '<li><a href="#'+articleId+'"><span>'+articleTitle+'</span></a></li>';
       //console.log('addLink: ', addLink);
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const addLink = templates.articleLink(linkHTMLData);
 
       /* insert the above HTML code to the left sidebar */
       //addList = addList + addLink;
@@ -170,7 +184,9 @@
       for(let tag of articleTagsArray){
 
         /* generate HTML of the link */
-        let genHTML = '<li><a href="#tag-'+tag+'">'+tag+'</a></li>';
+        //let genHTML = '<li><a href="#tag-'+tag+'">'+tag+'</a></li>';
+        const linkHTMLData = {tag: tag};
+        const genHTML = templates.tagBottomLink(linkHTMLData);
 
         /* add generated code to html variable */
         html = html + genHTML;
@@ -308,8 +324,9 @@
       }
 
       /* generate HTML code */
-      let html = '<a href="#author-'+articleAuthor+'">by '+articleAuthor+'</a>';
-
+      //let html = '<a href="#author-'+articleAuthor+'">by '+articleAuthor+'</a>';
+      const linkHTMLData = {articleAuthor: articleAuthor};
+      const html = templates.authorTopLink(linkHTMLData);
 
       /* insert author to HTML author wrapper */
       authorWrapper.insertAdjacentHTML('beforeend', html);
